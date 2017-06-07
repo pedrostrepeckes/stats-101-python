@@ -11,14 +11,16 @@ temp = [18.2,18.1,18,17.7,17.5,16.8,17.3,17.9,18.2,18.4,18.9,19,19.2,19.5,19.3,1
 lux = [10,10,10,100,200,500,850,1020,1200,1430,1900,1857,1500,1200,930,800,650,446,220,100,20,10,10,10]
 
 temp_minus_avg = temp - numpy.average(temp)
-lux_minue_avg = lux - numpy.average(lux)
+lux_minus_avg = lux - numpy.average(lux)
 
 r = numpy.corrcoef(temp,lux)
 covar = numpy.cov(temp, lux)
 cross_corr = correlation(temp,lux)
 auto_corr_temp = correlation(temp,temp)
 auto_corr_lux = correlation(lux,lux)
-cross_cov = correlation(temp_minus_avg,auto_corr_lux)
+cross_cov = correlation(temp_minus_avg,lux_minus_avg)
+auto_cross_cov_temp = correlation(temp_minus_avg,temp_minus_avg)
+auto_cross_cov_lux = correlation(lux_minus_avg,lux_minus_avg)
 
 print "Correlation" 
 print r
@@ -32,6 +34,10 @@ print "Luminosity Auto Correlation"
 print auto_corr_lux
 print "Cross Covariance"
 print cross_cov
+print "Temperature Cross Covariance"
+print auto_cross_cov_temp
+print "Luminosity Cross Covariance"
+print auto_cross_cov_lux
 exit()
 
 
